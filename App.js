@@ -20,25 +20,20 @@ import {
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme 
 } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { DrawerContent } from './screens/DrawerContent';
-
 import MainTabScreen from './screens/MainTabScreen';
 import SupportScreen from './screens/SupportScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import BookmarkScreen from './screens/BookmarkScreen';
-
-import { AuthContext } from './components/context';
-
 import RootStackScreen from './screens/RootStackScreen';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthContext } from './components/context';
 
 const Drawer = createDrawerNavigator();
 
 const App = () => {
-  // const [isLoading, setIsLoading] = React.useState(true);
-  // const [userToken, setUserToken] = React.useState(null); 
 
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
@@ -83,21 +78,18 @@ const App = () => {
       case 'LOGIN': 
         return {
           ...prevState,
-          userName: action.id,
           userToken: action.token,
           isLoading: false,
         };
       case 'LOGOUT': 
         return {
           ...prevState,
-          userName: null,
           userToken: null,
           isLoading: false,
         };
       case 'REGISTER': 
         return {
           ...prevState,
-          userName: action.id,
           userToken: action.token,
           isLoading: false,
         };
@@ -107,19 +99,8 @@ const App = () => {
   const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState);
 
   const authContext = React.useMemo(() => ({
-    signIn: async(foundUser) => {
-      // setUserToken('fgkj');
-      // setIsLoading(false);
-      const userToken = String(foundUser[0].userToken);
-      const userName = foundUser[0].username;
-      
-      try {
-        await AsyncStorage.setItem('userToken', userToken);
-      } catch(e) {
-        console.log(e);
-      }
-      // console.log('user token: ', userToken);
-      dispatch({ type: 'LOGIN', id: userName, token: userToken });
+    signIn: async () => {    
+      dispatch({ type: 'LOGIN' });
     },
     signOut: async() => {
       // setUserToken(null);
@@ -157,11 +138,12 @@ const App = () => {
 
   if( loginState.isLoading ) {
     return(
-      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+      <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
         <ActivityIndicator size="large"/>
       </View>
     );
   }
+  
   return (
     <PaperProvider theme={theme}>
     <AuthContext.Provider value={authContext}>

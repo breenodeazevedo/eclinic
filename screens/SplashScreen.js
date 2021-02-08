@@ -9,7 +9,6 @@ import {
     Image
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from '@react-navigation/native';
 
 const SplashScreen = ({ navigation }) => {
@@ -35,16 +34,20 @@ const SplashScreen = ({ navigation }) => {
             >
                 <Text style={[styles.title, {
                     color: colors.text
-                }]}>Stay connected with everyone!</Text>
-                <Text style={styles.text}>Sign in with account</Text>
+                }]}>e-Clinic System</Text>
+                <Text style={styles.text}>Health Management Software</Text>
                 <View style={styles.button}>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignInScreen')}>
-                        <Text style={styles.textSign}>Get Started</Text>
-                        <MaterialIcons
-                            name="navigate-next"
-                            color="#fff"
-                            size={20}
-                        />
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('SignInScreen')}
+                        style={[styles.signIn, {
+                            borderColor: '#009387',
+                            borderWidth: 1,
+                            marginTop: 5
+                        }]}
+                    >
+                        <Text style={[styles.textSign, {
+                            color: '#009387'
+                        }]}>Iniciar</Text>
                     </TouchableOpacity>
                 </View>
             </Animatable.View>
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     textSign: {
-        color: 'white',
+        color: 'black',
         fontWeight: 'bold'
     }
 });

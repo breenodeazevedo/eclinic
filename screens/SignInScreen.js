@@ -14,10 +14,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
 import { useTheme } from 'react-native-paper';
-
+import { login } from '../components/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthContext } from '../components/context';
 
-import Users from '../model/users';
 
 const SignInScreen = ({ navigation }) => {
 
@@ -89,33 +89,30 @@ const SignInScreen = ({ navigation }) => {
         }
     }
 
-    const loginHandle = (userName, password) => {
-
-        const foundUser = Users.filter(item => {
-            return userName == item.username && password == item.password;
-        });
+    const loginHandle = async () => {
 
         if (data.username.length == 0 || data.password.length == 0) {
-            Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
-                { text: 'Okay' }
+            Alert.alert('Ops!', 'Username ou senha não podem ficar em branco.', [
+                { text: 'OK' }
             ]);
             return;
         }
 
-        if (foundUser.length == 0) {
-            Alert.alert('Invalid User!', 'Username or password is incorrect.', [
-                { text: 'Okay' }
-            ]);
-            return;
-        }
-        signIn(foundUser);
+        login(data.username, data.password)
+            .then(async (response) => {
+                if (response.data.access_token) {
+                    await AsyncStorage.setItem('userToken', response.data.access_token);
+                    signIn();
+                }
+            })
+            .catch(error => Alert.alert('Credenciais inválidas, tente novamente'));
     }
 
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor='#009387' barStyle="light-content" />
             <View style={styles.header}>
-                <Text style={styles.text_header}>Welcome!</Text>
+                <Text style={styles.text_header}>Bem vind@!</Text>
             </View>
             <Animatable.View
                 animation="fadeInUpBig"
@@ -156,7 +153,7 @@ const SignInScreen = ({ navigation }) => {
                 </View>
                 {data.isValidUser ? null :
                     <Animatable.View animation="fadeInLeft" duration={500}>
-                        <Text style={styles.errorMsg}>Username must be 4 characters long.</Text>
+                        <Text style={styles.errorMsg}>Username deve ter, no mínimo, 4 caracteres.</Text>
                     </Animatable.View>
                 }
 
@@ -164,7 +161,7 @@ const SignInScreen = ({ navigation }) => {
                 <Text style={[styles.text_footer, {
                     color: colors.text,
                     marginTop: 35
-                }]}>Password</Text>
+                }]}>Senha</Text>
                 <View style={styles.action}>
                     <Feather
                         name="lock"
@@ -201,26 +198,15 @@ const SignInScreen = ({ navigation }) => {
                 </View>
                 {data.isValidPassword ? null :
                     <Animatable.View animation="fadeInLeft" duration={500}>
-                        <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
+                        <Text style={styles.errorMsg}>Senha deve ter, no mínimo, 8 caracteres.</Text>
                     </Animatable.View>
                 }
-
-
                 <TouchableOpacity>
-                    <Text style={{ color: '#009387', marginTop: 15 }}>Forgot password?</Text>
+                    <Text style={{ color: '#009387', marginTop: 15 }}>Esqueci minha senha</Text>
                 </TouchableOpacity>
                 <View style={styles.button}>
                     <TouchableOpacity
-                        style={styles.signIn}
-                        onPress={() => { loginHandle(data.username, data.password) }}
-                    >
-                        <Text style={[styles.textSign, {
-                            color: '#fff'
-                        }]}>Sign In</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('SignUpScreen')}
+                        onPress={loginHandle}
                         style={[styles.signIn, {
                             borderColor: '#009387',
                             borderWidth: 1,
