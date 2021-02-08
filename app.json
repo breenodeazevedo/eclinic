@@ -1,0 +1,12 @@
+{
+  "name": "eclinic",
+  "displayName": "eclinic",
+  "expo": {
+    "name": "eclinic",
+    "slug": "eclinic",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
