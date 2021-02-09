@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import ConsultaCard from './cards/ConsultaCard';
+import ConsultaCard from '../components/cards/ConsultaCard';
 
 const ConsultaScreen = ({ navigation }) => {
 
     return (
         <ScrollView style={styles.scrollView} horizontal={true}>
             <View style={styles.container}>
-
                 <ConsultaCard />
             </View>
         </ScrollView>

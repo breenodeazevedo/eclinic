@@ -1,10 +1,9 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Container, Content, List, ListItem } from 'native-base';
+import { Container, Content } from 'native-base';
 import React, { Component } from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert, Text, StyleSheet } from 'react-native';
 import { Avatar, Button, Card, Paragraph } from 'react-native-paper';
-
-import { fetchConsultas, getToken } from '../../components/api';
+import { fetchConsultas } from '../api';
+import { dateFormat, timeFormat } from '../helpers';
 
 export default class ConsultaCard extends Component {
 
@@ -26,12 +25,13 @@ export default class ConsultaCard extends Component {
                     });
                 }
             })
-            .catch(error => Alert.alert('Ops'));
+            .catch(error => Alert.alert('Ops', 'Houve um problema ao exibir suas consultas'));
     }
 
     render() {
 
         const LeftContent = props => <Avatar.Icon {...props} icon="calendar" backgroundColor={'#009387'} />
+        const Bold = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
 
         return (
             <Container>
@@ -41,10 +41,10 @@ export default class ConsultaCard extends Component {
                             <Card style={styles.card} key={index}>
                                 <Card.Title title={item.paciente_nome} subtitle={item.convenio_nome} left={LeftContent} />
                                 <Card.Content>
-                                    <Paragraph>Data: {item.data}</Paragraph>
-                                    <Paragraph>Hora: {item.horaInicio} às {item.horaFim}</Paragraph>
-                                    <Paragraph>Procedimento: {item.procedimento_nome}</Paragraph>
-                                    <Paragraph>Sala: {item.sala_nome}</Paragraph>
+                                    <Paragraph><Bold>Data:</Bold> {dateFormat(item.data)}</Paragraph>
+                                    <Paragraph><Bold>Hora:</Bold> {timeFormat(item.horaInicio)} às {timeFormat(item.horaFim)}</Paragraph>
+                                    <Paragraph><Bold>Procedimento:</Bold> {item.procedimento_nome}</Paragraph>
+                                    <Paragraph><Bold>Sala:</Bold> {item.sala_nome}</Paragraph>
                                 </Card.Content>
                                 <Card.Actions style={styles.actions}>
                                     <Button mode="outlined" color={'#009387'}>Ver</Button>
