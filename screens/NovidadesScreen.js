@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const ExploreScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text>Details Screen</Text>
+            <Text>Novidades Screen</Text>
         </View>
     );
 };
