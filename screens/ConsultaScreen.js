@@ -1,20 +1,16 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Container, Header, Content, Left, Body, Right, Title, Tab, Tabs } from 'native-base';
-import ConsultaList from './lists/ConsultaList';
-import { ScrollView } from 'react-native-gesture-handler';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import ConsultaCard from './cards/ConsultaCard';
 
 const ConsultaScreen = ({ navigation }) => {
+
     return (
-        <>
-            <View style={{ flex: 1 }}>
-                <ScrollView contentContainerStyle={{ paddingVertical: 20 }}>
-                    <ConsultaList />
-                    <ConsultaList />
-                    <ConsultaList />
-                </ScrollView>
+        <ScrollView style={styles.scrollView} horizontal={true}>
+            <View style={styles.container}>
+
+                <ConsultaCard />
             </View>
-        </>
+        </ScrollView>
     );
 };
 
@@ -23,7 +19,6 @@ export default ConsultaScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
+        marginBottom: 7
+    }
 });

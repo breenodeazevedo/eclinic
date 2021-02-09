@@ -4,7 +4,7 @@ import axios from "axios";
 const API_URL = 'https://evolvecomsaude.com/api';
 
 export async function getToken() {
-    const value = await AsyncStorage.getItem('token');
+    const value = await AsyncStorage.getItem('userToken');
     if (value !== null) {
         return value;
     }
