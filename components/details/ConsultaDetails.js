@@ -11,7 +11,7 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Consulta = () => {
+const ConsultaDetails = () => {
 
     return (
         <SafeAreaView style={styles.container}>
@@ -91,7 +91,7 @@ const Consulta = () => {
     );
 };
 
-export default Consulta;
+export default ConsultaDetails;
 
 const styles = StyleSheet.create({
     container: {

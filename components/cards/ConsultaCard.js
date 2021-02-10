@@ -55,7 +55,7 @@ export default class ConsultaCard extends Component {
                                     <Paragraph><Bold>Sala:</Bold> {item.sala_nome}</Paragraph>
                                 </Card.Content>
                                 <Card.Actions style={styles.actions}>
-                                    <Button mode="outlined" color={'#009387'}>Ver</Button>
+                                    <Button mode="outlined" color={'#009387'} onPress={() => { props.navigation.navigate('Home') }}>Ver</Button>
                                 </Card.Actions>
                             </Card>
                         ))
