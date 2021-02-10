@@ -1,7 +1,7 @@
 import { Container, Content } from 'native-base';
 import React, { Component } from 'react';
-import { Alert, Text, StyleSheet } from 'react-native';
-import { Avatar, Button, Card, Paragraph } from 'react-native-paper';
+import { Alert, Text, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Avatar, Button, Card, Paragraph } from 'react-native-paper';
 import { fetchConsultas } from '../api';
 import { dateFormat, timeFormat } from '../helpers';
 
@@ -33,6 +33,14 @@ export default class ConsultaCard extends Component {
         const LeftContent = props => <Avatar.Icon {...props} icon="calendar" backgroundColor={'#009387'} />
         const Bold = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
 
+        if (this.state.isLoading) {
+            return (
+                <View style={styles.container}>
+                    <ActivityIndicator size="large" color='009387' />
+                </View>
+            );
+        }
+
         return (
             <Container>
                 <Content>
@@ -59,6 +67,12 @@ export default class ConsultaCard extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 365
+    },
     card: {
         marginBottom: 7
     },

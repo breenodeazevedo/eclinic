@@ -41,15 +41,17 @@ export function login(email, password) {
     return resposta
 }
 
-export function fetchInfos(email) {
+export async function fetchInfos(email) {
+    const appToken = await getToken();
     const body = { email }
     const headers = {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
+        'Authorization': `Bearer ${appToken}`
     }
     const resposta = axios({
         "method": 'post',
-        "url": `${API_URL}/auth/login`,
+        "url": `${API_URL}/auth/entity/transac`,
         "headers": headers,
         "data": body
     });

@@ -14,7 +14,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
 import { useTheme } from 'react-native-paper';
-import { login } from '../components/api';
+import { fetchInfos, login } from '../components/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthContext } from '../components/context';
 
@@ -102,7 +102,16 @@ const SignInScreen = ({ navigation }) => {
             .then(async (response) => {
                 if (response.data.access_token) {
                     await AsyncStorage.setItem('userToken', response.data.access_token);
-                    signIn();
+                    
+                    fetchInfos(data.username)
+                        .then(async (response) => {
+                            if (response.data) {
+                                console.log(JSON.stringify(response.data))
+                                await AsyncStorage.setItem('entity', JSON.stringify(response['data']));
+                                signIn();
+                            }
+                        })
+                        .catch(error => Alert.alert('Ops', 'Houve um problema com o seu usuário'));
                 }
             })
             .catch(error => Alert.alert('Credenciais inválidas, tente novamente'));
