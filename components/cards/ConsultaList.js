@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet
-} from 'react-native';
-
-import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Left, Body, Right, Text, Icon } from 'native-base';
 import { dateFormat, timeFormat } from '../helpers';
 import { useNavigation } from '@react-navigation/native';
 
@@ -48,9 +44,3 @@ const ConsultaList = (props) => {
 }
 
 export default ConsultaList;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
