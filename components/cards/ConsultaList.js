@@ -20,10 +20,7 @@ const ConsultaList = (props) => {
         const navigation = useNavigation();
 
         return (
-          <ListItem key={item.id} avatar onPress={() => navigation.navigate('ConsultaScreen', {item: 1}) }>
-            <Left>
-              <Thumbnail source={{ uri: "https://www.kindpng.com/picc/b/136/1369892.png" }} />
-            </Left>
+          <ListItem key={item.id} onPress={() => navigation.navigate('ConsultaScreen', {item}) }>
             <Body>
               <Text>{`${item.paciente_nome}`}</Text>
               <Text note><Bold>Data:</Bold> {dateFormat(item.data)} - {timeFormat(item.horaInicio)} às {timeFormat(item.horaFim)}</Text>

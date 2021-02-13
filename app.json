@@ -1,9 +1,18 @@
 {
-  "name": "eclinic",
-  "displayName": "eclinic",
+  "name": "e-Clinic",
+  "displayName": "e-Clinic",
+  "icon": "./assets/logo.png",
   "expo": {
-    "name": "eclinic",
+    "name": "e-Clinic",
     "slug": "eclinic",
+    "ios": {
+      "bundleIdentifier": "com.lotusdesenvolvimento.eclinic",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.lotusdesenvolvimento.eclinic",
+      "versionCode": 1
+    },
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

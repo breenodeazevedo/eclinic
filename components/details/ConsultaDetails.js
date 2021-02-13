@@ -11,18 +11,21 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const ConsultaDetails = ({navigation}) => {
+const ConsultaDetails = ({route, navigation}) => {
+
+    const { item } = route.params;
+    console.log(item);
 
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
                 <View style={styles.userInfoSection}>
-                    <View style={{ flexDirection: 'row', marginTop: 15 }}>
+                    <View style={{ flexDirection: 'row' }}>
                         <View style={{ marginLeft: 20 }}>
                             <Title style={[styles.title, {
                                 marginTop: 15,
                                 marginBottom: 5,
-                            }]}>BRENO AZEVEDO</Title>
+                            }]}>{item.paciente_nome}</Title>
                             <Caption style={styles.caption}>Profissão</Caption>
                         </View>
                     </View>
@@ -31,32 +34,28 @@ const ConsultaDetails = ({navigation}) => {
                 <View style={styles.userInfoSection}>
                     <View style={styles.row}>
                         <Icon name="map-marker-radius" color="#777777" size={20} />
-                        <Text style={{ color: "#777777", marginLeft: 20 }}>Sala 01</Text>
+                        <Text style={{ color: "#777777", marginLeft: 20 }}>{item.sala_nome}</Text>
                     </View>
                     <View style={styles.row}>
                         <Icon name="phone" color="#777777" size={20} />
                         <Text style={{ color: "#777777", marginLeft: 20 }}>+91-900000009</Text>
                     </View>
-                    <View style={styles.row}>
-                        <Icon name="email" color="#777777" size={20} />
-                        <Text style={{ color: "#777777", marginLeft: 20 }}>john_doe@email.com</Text>
-                    </View>
                 </View>
 
                 <View style={styles.infoBoxWrapper}>
                     <View style={[styles.infoBoxFull]}>
-                        <Title>PSICOTERAPIA - PRESENCIAL</Title>
-                        <Caption>Procedimento</Caption>
+                        <Title>{item.procedimento_nome}</Title>
+                        <Caption>PROCEDIMENTO</Caption>
                     </View>
                 </View>
                 <View style={styles.infoBoxWrapper}>
                     <View style={[styles.infoBox]}>
-                        <Title>UNIMED</Title>
-                        <Caption>Convênio</Caption>
+                        <Title>{item.convenio_nome}</Title>
+                        <Caption>CONVÊNIO</Caption>
                     </View>
                     <View style={styles.infoBox}>
                         <Title>5/12</Title>
-                        <Caption>Sessão</Caption>
+                        <Caption>STATUS</Caption>
                     </View>
                 </View>
 
@@ -79,16 +78,10 @@ const ConsultaDetails = ({navigation}) => {
                             <Text style={styles.menuItemText}>ATENDER</Text>
                         </View>
                     </TouchableRipple>
-                    <TouchableRipple onPress={() => { }}>
-                        <View style={styles.menuItem}>
-                            <Icon name="credit-card" color="#009387" size={25} />
-                            <Text style={styles.menuItemText}>FATURAR</Text>
-                        </View>
-                    </TouchableRipple>
                     <TouchableRipple onPress={() => navigation.goBack()}>
                         <View style={styles.menuItem}>
                             <Icon name="back" color="#009387" size={25} />
-                            <Text style={styles.menuItemText}>Voltar</Text>
+                            <Text style={styles.menuItemText}>VOLTA</Text>
                         </View>
                     </TouchableRipple>
                 </View>
