@@ -6,12 +6,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './HomeScreen';
-import ConsultaScreen from './ConsultaScreen';
+import ConsultasScreen from './ConsultasScreen';
 import NovidadeScreen from './NovidadesScreen';
 import ProfileScreen from './ProfileScreen';
 
 const HomeStack = createStackNavigator();
-const ConsultaStack = createStackNavigator();
+const ConsultasStack = createStackNavigator();
 const NovidadeStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 
@@ -35,7 +35,7 @@ const MainTabScreen = () => (
     />
     <Tab.Screen
       name="Consultas"
-      component={ConsultaStackScreen}
+      component={ConsultasStackScreen}
       options={{
         tabBarLabel: 'Consultas',
         tabBarColor: '#009387',
@@ -90,8 +90,8 @@ const HomeStackScreen = ({ navigation }) => (
   </HomeStack.Navigator>
 );
 
-const ConsultaStackScreen = ({ navigation }) => (
-  <ConsultaStack.Navigator screenOptions={{
+const ConsultasStackScreen = ({ navigation }) => (
+  <ConsultasStack.Navigator screenOptions={{
     headerStyle: {
       backgroundColor: '#009387',
     },
@@ -100,12 +100,12 @@ const ConsultaStackScreen = ({ navigation }) => (
       fontWeight: 'bold'
     }
   }}>
-    <ConsultaStack.Screen name="Consultas" component={ConsultaScreen} options={{
+    <ConsultasStack.Screen name="Consultas" component={ConsultasScreen} options={{
       headerLeft: () => (
         <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}></Icon.Button>
       )
     }} />
-  </ConsultaStack.Navigator>
+  </ConsultasStack.Navigator>
 );
 
 const NovidadeStackScreen = ({ navigation }) => (

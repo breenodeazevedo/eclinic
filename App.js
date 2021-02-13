@@ -29,6 +29,8 @@ import SettingsScreen from './screens/SettingsScreen';
 import BookmarkScreen from './screens/BookmarkScreen';
 import RootStackScreen from './screens/RootStackScreen';
 
+import ConsultaDetails from './components/details/ConsultaDetails'
+
 import { AuthContext } from './components/context';
 
 const Drawer = createDrawerNavigator();
@@ -154,6 +156,7 @@ const App = () => {
           <Drawer.Screen name="SupportScreen" component={SupportScreen} />
           <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
           <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
+          <Drawer.Screen name="ConsultaScreen" component={ConsultaDetails} />
         </Drawer.Navigator>
       )
     :

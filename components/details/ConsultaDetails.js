@@ -11,7 +11,7 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const ConsultaDetails = () => {
+const ConsultaDetails = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.container}>
@@ -83,6 +83,12 @@ const ConsultaDetails = () => {
                         <View style={styles.menuItem}>
                             <Icon name="credit-card" color="#009387" size={25} />
                             <Text style={styles.menuItemText}>FATURAR</Text>
+                        </View>
+                    </TouchableRipple>
+                    <TouchableRipple onPress={() => navigation.goBack()}>
+                        <View style={styles.menuItem}>
+                            <Icon name="back" color="#009387" size={25} />
+                            <Text style={styles.menuItemText}>Voltar</Text>
                         </View>
                     </TouchableRipple>
                 </View>
