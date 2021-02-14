@@ -4,7 +4,7 @@ import { ActivityIndicator } from 'react-native-paper';
 import { fetchConsultas } from '../components/api';
 import ConsultaList from '../components/cards/ConsultaList';
 
-export default class ConsultasScreen extends Component {
+export default class ConsultasScreen extends React.Component {
 
     constructor(props) {
         super(props);

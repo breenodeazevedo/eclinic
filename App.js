@@ -105,8 +105,6 @@ const App = () => {
       dispatch({ type: 'LOGIN' });
     },
     signOut: async() => {
-      // setUserToken(null);
-      // setIsLoading(false);
       try {
         await AsyncStorage.removeItem('userToken');
       } catch(e) {
@@ -115,8 +113,6 @@ const App = () => {
       dispatch({ type: 'LOGOUT' });
     },
     signUp: () => {
-      // setUserToken('fgkj');
-      // setIsLoading(false);
     },
     toggleTheme: () => {
       setIsDarkTheme( isDarkTheme => !isDarkTheme );

@@ -80,7 +80,7 @@ const ConsultaDetails = ({route, navigation}) => {
                     </TouchableRipple>
                     <TouchableRipple onPress={() => navigation.goBack()}>
                         <View style={styles.menuItem}>
-                            <Icon name="back" color="#009387" size={25} />
+                            <Icon name="check-circle" color="#009387" size={25} />
                             <Text style={styles.menuItemText}>VOLTA</Text>
                         </View>
                     </TouchableRipple>
