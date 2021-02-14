@@ -21,7 +21,7 @@ const ConsultaDetails = ({route, navigation}) => {
             <ScrollView>
                 <View style={styles.userInfoSection}>
                     <View style={{ flexDirection: 'row' }}>
-                        <View style={{ marginLeft: 20 }}>
+                        <View style={{ marginLeft: 20, marginTop: 15 }}>
                             <Title style={[styles.title, {
                                 marginTop: 15,
                                 marginBottom: 5,
@@ -80,7 +80,7 @@ const ConsultaDetails = ({route, navigation}) => {
                     </TouchableRipple>
                     <TouchableRipple onPress={() => navigation.goBack()}>
                         <View style={styles.menuItem}>
-                            <Icon name="check-circle" color="#009387" size={25} />
+                            <Icon name="skip-backward" color="#009387" size={25} />
                             <Text style={styles.menuItemText}>VOLTA</Text>
                         </View>
                     </TouchableRipple>
